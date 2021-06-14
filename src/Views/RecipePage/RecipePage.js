@@ -7,7 +7,9 @@ import TemporaryData from '../../Constants/TemporaryData'
 const RecipePage = () => {
     const { id } = useParams();
     const food = TemporaryData.find(fd => fd.id === id);
-    console.log(food);
+    const selectedFoods = TemporaryData.filter(food => food.type === TemporaryData[id].type.toString())
+    console.log(selectedFoods)
+
     return (
         <>
             <Header />
@@ -31,9 +33,16 @@ const RecipePage = () => {
                     </div>
                 </div>
             </div>
-            {
-                // selectedFoods.map(food => <FoodItem key={food.id} food={food} />)
-            }
+            <section id='food' className="food-area my-5">
+                <div className="container">
+                    <div className="row my-5">
+
+                        {
+                            selectedFoods.slice(3, 6).map(food => <FoodItem key={food.id} food={food} />)
+                        }
+                    </div>
+                </div>
+            </section>
         </>
     );
 };
